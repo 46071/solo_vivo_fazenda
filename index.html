@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Solo Vivo 2056 – Fazenda Inteligente</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><div class="logo">🌱</div><div>Solo Vivo<small>FAZENDA INTELIGENTE · 2056</small></div></div>
+  <div class="sp"></div>
+  <div class="clock"><b id="clk">06:00</b><span id="day">Dia 1</span></div>
+  <button class="iconb" id="theme" aria-label="Alternar tema claro/escuro">◐</button>
+</header>
+
+<main>
+  <!-- PAINEL -->
+  <section class="view on" id="v-painel">
+    <div class="hero wide">
+      <div class="herobg" role="img" aria-label="Trator autônomo em plantação ao amanhecer"></div>
+      <span class="pill"><i></i>IA Gaia · operação autônoma</span>
+      <div class="eyebrow">AGRICULTURA INTELIGENTE · AMANHÃ MAIS VERDE</div>
+      <h1 class="wm" aria-label="Solo Vivo"><span>SOLO</span><span>VIV<svg class="lo" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#2b3640"/><circle cx="12" cy="12" r="10" fill="none" stroke="#6BBF59" stroke-width="1.5"/><path d="M7 16.5c0-6 4-9.500 10-9.500 0 6-3.500 10-10 9.500z" fill="#6BBF59"/></svg></span></h1>
+      <p class="sub">Soluções modernas para uma fazenda e um planeta mais saudáveis.</p>
+      <button class="btn lime" data-go="irrig">Explorar painel <span aria-hidden="true">→</span></button>
+      <div class="script" aria-hidden="true">Cultive um<br>amanhã melhor</div>
+      <ul class="side"><li>MAIS<br>COLHEITA</li><li>MENOS<br>ÁGUA</li><li>ENERGIA<br>LIMPA</li></ul>
+      <div class="trio"><span>↑ Mais colheita</span><span>💧 Menos água</span><span>☀️ Energia limpa</span><button class="watch" data-go="irrig">▶ Ver irrigação</button></div>
+    </div>
+    <div class="kpis wide">
+      <div class="kpi" style="--c:var(--sky)"><small>Umidade média do solo</small><b id="kMoist">0%</b><em>meta 55–65%</em></div>
+      <div class="kpi" style="--c:var(--gold)"><small>Energia solar</small><b id="kSolar">0 kW</b><em id="kSolarS">—</em></div>
+      <div class="kpi" style="--c:var(--g)"><small>Reservatório</small><b id="kTank">0%</b><em id="kTankL">—</em></div>
+      <div class="kpi" style="--c:var(--soil)"><small>Colhido (total)</small><b id="kHarv">0 t</b><em>desde o início</em></div>
+    </div>
+    <div class="card">
+      <h2>Umidade média do solo · últimas leituras</h2>
+      <svg class="chart" id="chart" viewBox="0 0 320 130" role="img" aria-label="Gráfico de umidade média do solo"></svg>
+    </div>
+    <div class="card">
+      <h2>Clima na fazenda</h2>
+      <div class="weather">
+        <div>Temp.<b id="wT">—</b></div><div>Ar<b id="wH">—</b></div><div>Vento<b id="wW">—</b></div><div>Chuva<b id="wR">—</b></div>
+      </div>
+      <h2 style="margin-top:16px">Alertas da IA</h2>
+      <ul class="log" id="log"></ul>
+    </div>
+    <div class="card wide">
+      <h2>Frota autônoma</h2>
+      <div id="units"></div>
+    </div>
+    <div class="imp-h wide"><small>NOSSO IMPACTO</small><h2>Cada cultura irrigada com <em>precisão.</em></h2><p>Do solo à colheita, a IA mede a umidade de cada talhão e libera água só quando precisa.</p></div>
+    <div class="impc wide">
+      <div class="sprout" aria-hidden="true"><svg viewBox="0 0 200 140"><circle cx="100" cy="70" r="52" fill="none" stroke="#6BBF59" stroke-opacity=".25"/><circle cx="100" cy="70" r="68" fill="none" stroke="#6BBF59" stroke-opacity=".12"/><circle cx="100" cy="46" r="24" fill="none" stroke="#6BBF59" stroke-width="2"/><path d="M100 52c-1-8-6-12-13-12 0 8 5 12 13 12zM100 52c1-8 6-12 13-12 0 8-5 12-13 12z" fill="#6BBF59"/><path d="M100 132V94" stroke="#3f9a4a" stroke-width="4"/><path d="M100 106c-4-18-20-22-34-18 4 14 18 22 34 18zM100 98c4-16 18-22 32-18-3 14-16 22-32 18z" fill="#6BBF59"/><path d="M52 136q48-18 96 0z" fill="#b9946a"/></svg></div>
+      <div class="crops2" id="impCrops"></div>
+    </div>
+    <div class="card wide strip"><span><b>100%</b>energia solar</span><span><b>−40%</b>uso de água</span><span><b>24 h</b>operação autônoma</span></div>
+  </section>
+
+  <!-- IRRIGAÇÃO -->
+  <section class="view" id="v-irrig">
+    <div class="card wide">
+      <div class="master">
+        <div><h2 style="margin:0">Irrigação automática pela IA</h2><small id="autoTxt">A IA abre e fecha as válvulas conforme a umidade desejada.</small></div>
+        <button class="sw" id="auto" role="switch" aria-checked="true" aria-label="Irrigação automática"></button>
+      </div>
+      <div class="row" style="display:flex;justify-content:space-between;margin-top:14px;font-size:.85rem;color:var(--mut)"><span>Reservatório de água</span><b id="tankTxt" style="color:var(--ink)"></b></div>
+      <div class="bar" id="tankBar"><i></i></div>
+    </div>
+    <div class="zones wide" id="zones"></div>
+  </section>
+
+  <!-- PRODUÇÃO -->
+  <section class="view" id="v-prod">
+    <div class="card wide total"><div><small style="color:var(--mut)">Total colhido</small><br><b id="harv2">0 t</b></div><span style="font-size:2.2rem">🚜</span></div>
+    <div class="crops wide" id="crops"></div>
+  </section>
+
+  <!-- PROJETO -->
+  <section class="view" id="v-proj">
+    <div class="card wide">
+      <h2>Conceito</h2>
+      <p>Em 2056, a agricultura é <b>autônoma, circular e sustentável</b>. A Solo Vivo usa a água com precisão, gera a própria energia solar e coordena drones e robôs por uma IA central chamada Gaia. O painel traduz tudo isso em uma interface simples para qualquer pessoa.</p>
+    </div>
+    <div class="card">
+      <h2>Estrutura da interface</h2>
+      <ul class="p"><li><b>Painel:</b> visão geral, clima, alertas e frota.</li><li><b>Irrigação:</b> controle automático ou manual por talhão.</li><li><b>Produção:</b> crescimento das culturas e colheita.</li><li><b>Projeto:</b> identidade e uso de IA.</li></ul>
+      <p style="margin-top:8px">Navegação por barra inferior no celular, ao alcance do polegar. Cada talhão e cultura é um cartão independente.</p>
+    </div>
+    <div class="card">
+      <h2>Identidade visual</h2>
+      <div class="sw-row"><div class="swatch" style="background:#5B7082;color:#fff;text-shadow:none">Azul ardósia #5B7082</div><div class="swatch" style="background:#DCCECE;color:#26323c;text-shadow:none">Rosa poeira #DCCECE</div><div class="swatch" style="background:#6BBF59;color:#1f2a33;text-shadow:none">Verde vivo #6BBF59</div><div class="swatch" style="background:#D5C0AB;color:#26323c;text-shadow:none">Areia #D5C0AB</div><div class="swatch" style="background:#E8E0D5;color:#26323c;text-shadow:none">Creme #E8E0D5</div></div>
+      <p style="margin-top:10px">Paleta suave e natural: azul ardósia, rosa poeira, verde vivo, areia e creme, para um visual calmo e tecnológico. Há tema claro e escuro, e o layout se adapta de celular a desktop.</p>
+    </div>
+    <div class="card wide">
+      <h2>Ferramentas de IA no desenvolvimento</h2>
+      <ul class="p">
+        <li><b>Claude (Anthropic):</b> definiu a estrutura das telas, a paleta, os textos e escreveu o código (HTML, CSS e JavaScript) deste site.</li>
+        <li><b>Ideias para evoluir:</b> geradores de imagem para ilustrar as culturas e a fazenda, e assistentes de código no editor para ligar o painel a sensores reais.</li>
+      </ul>
+      <div class="prompt">Exemplo de pedido usado: “Crie um painel de fazenda inteligente de 2056, com irrigação e produção, em cores de fazenda e funcionando bem no celular.”</div>
+    </div>
+    <div class="card wide">
+      <h2>IA dentro da fazenda (ficção)</h2>
+      <ul class="p"><li><b>Visão computacional:</b> drones identificam pragas e o ponto da colheita.</li><li><b>Previsão:</b> a Gaia cruza clima e solo para decidir quando irrigar.</li><li><b>Gêmeo digital:</b> cópia virtual da fazenda para testar decisões antes.</li><li><b>Robótica coordenada:</b> robôs semeiam, pulverizam e colhem sem conflito.</li></ul>
+      <p style="margin-top:8px">Os dados deste site são simulados.</p>
+    </div>
+  </section>
+</main>
+
+<nav class="tabs" role="tablist" aria-label="Seções">
+  <button role="tab" aria-selected="true" data-v="painel"><span>📊</span>Painel</button>
+  <button role="tab" aria-selected="false" data-v="irrig"><span>💧</span>Irrigação</button>
+  <button role="tab" aria-selected="false" data-v="prod"><span>🌾</span>Produção</button>
+  <button role="tab" aria-selected="false" data-v="proj"><span>🧠</span>Projeto</button>
+</nav>
+
+<script src="script.js"></script>
+</body>
+</html>
